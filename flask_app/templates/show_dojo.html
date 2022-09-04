@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Dojo</title>
+</head>
+<body>
+    <h1>{{dojo.name}} Ninjas</h1>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Actions</td>
+        </tr>
+        {% for one_ninja in dojo.ninjas %}
+        <tr>
+            <td>{{one_ninja.first_name}}</td>
+            <td>{{one_ninja.last_name}}</td>
+            <td>{{one_ninja.age}}</td>
+            <td><ul>
+                <li><a class="edit" href="/edit/{{one_ninja.id}}">Edit</a></li>
+                <li><form action="/destroy/{{one_ninja.id}}" method="post">
+                    <input type="submit" value="Delete {{one_ninja.id}}">
+                </form></li>
+            </ul></td>
+        </tr> 
+        {% endfor %}
+    </table>
+    <a class="home" href="/dojos">Home</a>
+</body>
+</html>

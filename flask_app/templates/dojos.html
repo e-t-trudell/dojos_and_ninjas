@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos</title>
+</head>
+<body>
+    <div>
+        <h1>New Dojo</h1>
+        <form action="/create_dojo" method="post">
+            <input type="hidden" name="id" value="{{dojos.id}}">
+            <label for="name" value="Name:"><input type="text" name="name" id="dojo_name"></label>
+            <input type="submit" value="Add Dojo">
+        </form>
+    </div>
+    <div>
+        <h1>All Dojos</h1>
+        {# make this loop through all the dojos and show by their id. need  to establish dojos list(controllers dojos.py), and id for dojos #}
+        <table>
+        {% for a_dojo in dojos %}
+        
+            <tr>
+                {# here you need to reference both the id from the variable in the for loop and the actual name in jinja to display the correct one #}
+                <td><a href="/dojos/{{a_dojo.id}}">{{a_dojo.name}}</a></td>
+                {# destroy tied to specific id #}
+                {# <td><a href="/dojos/destroy/{{dojos.id}}">Delete</a></td> #}
+                <td><form action="/dojos/destroy/{{a_dojo.id}}" method="post">
+                    <input type="submit" value="Delete {{a_dojo.id}}">
+                </form></td> 
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div>
+        <a href="/add_ninjas" value="Add Ninja">Add Ninja<a>
+    </div>
+</body>
+</html>
